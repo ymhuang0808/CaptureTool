@@ -7,7 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,0,0">
+        <Pivot Title="Capture tool" Margin="0,0,0,0">
+            <PivotItem Header="Home">
+                <Frame Name="frame" />
+            </PivotItem>
+            <PivotItem Header="Create a record">
+                <Grid/>
+            </PivotItem>
+            <PivotItem Header="View history">
+                <Grid/>
+            </PivotItem>
+        </Pivot>
 
     </Grid>
 </Page>
