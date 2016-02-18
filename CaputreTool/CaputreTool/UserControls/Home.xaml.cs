@@ -12,25 +12,16 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using CaputreTool.UserControls;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace CaputreTool
+namespace CaputreTool.UserControls
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class Home : UserControl
     {
-        public MainPage()
+        public Home()
         {
             this.InitializeComponent();
-        }
-
-        private void HomePivotItem_Loaded(object sender, RoutedEventArgs e)
-        {
-            homeContent.Content = new Home();
         }
     }
 }

@@ -9,8 +9,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,0,0">
         <Pivot Title="Capture tool" Margin="0,0,0,0">
-            <PivotItem Header="Home">
-                <Frame Name="frame" />
+            <PivotItem Header="Home" Loaded="HomePivotItem_Loaded">
+                <ContentControl x:Name="homeContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             </PivotItem>
             <PivotItem Header="Create a record">
                 <Grid/>
