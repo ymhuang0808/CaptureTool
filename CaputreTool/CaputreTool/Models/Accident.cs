@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CaputreTool.Entities
+namespace CaputreTool.Models
 {
     class Accident
     {
         enum EnumTypes { Falls, Drop, Fracture, Other };
         public int type { get; set; }
-        public String OtherType;
+        public String OtherType { get; set; }
 
         public enum Witnesses { Student, Teacher, Other };
-        public String OtherWitness;
+        public String OtherWitness { get; set; }
     }
 }

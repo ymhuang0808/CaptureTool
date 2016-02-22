@@ -10,7 +10,29 @@
     d:DesignWidth="1500">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="recentTitle" HorizontalAlignment="Left" Margin="50,50,0,0" TextWrapping="Wrap" Text="Recent" VerticalAlignment="Top" Style="{ThemeResource SubheaderTextBlockStyle}"/>
-
+        <TextBlock x:Name="recentTitle" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="Recent" VerticalAlignment="Top" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+        <ListView Margin="0,60,0,0" ItemsSource="{Binding}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" ItemHeight="100" ItemWidth="200" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Person.name}" />
+                                <!-- Student name -->
+                                <TextBlock Text="{Binding Person.className }" />
+                                <!-- Class -->
+                            </StackPanel>
+                            <TextBlock Text="{Binding DateCreated}" />
+                            <!-- Date -->
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

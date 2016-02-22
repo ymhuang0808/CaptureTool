@@ -98,11 +98,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Accident.cs" />
-    <Compile Include="Entities\RecordProcedure.cs" />
-    <Compile Include="Entities\Situation.cs" />
-    <Compile Include="Entities\Symptom.cs" />
-    <Compile Include="Entities\Treatment.cs" />
+    <Compile Include="Models\Accident.cs" />
+    <Compile Include="Models\RecordProcedure.cs" />
+    <Compile Include="Models\Situation.cs" />
+    <Compile Include="Models\Symptom.cs" />
+    <Compile Include="Models\Treatment.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -110,9 +110,10 @@
     <Compile Include="UserControls\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\PersonViewModel.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Record.cs" />
     <Compile Include="ViewModels\AbstractRecordViewModel.cs" />
-    <Compile Include="ViewModels\DemoRecordViewModel.cs" />
+    <Compile Include="ViewModels\DemoRecordsViewModel.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
