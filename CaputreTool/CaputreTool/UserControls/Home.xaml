@@ -5,34 +5,107 @@
     xmlns:local="using:CaputreTool.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="using:CaputreTool.ViewModels"
     mc:Ignorable="d"
     d:DesignHeight="1000"
     d:DesignWidth="1500">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="recentTitle" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="Recent" VerticalAlignment="Top" Style="{ThemeResource SubheaderTextBlockStyle}"/>
-        <ListView Margin="0,60,0,0" ItemsSource="{Binding}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal" ItemHeight="100" ItemWidth="200" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+    <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup
+                x:Name="AdaptiveState"
+                CurrentStateChanged="AdaptiveState_CurrentStateChanged">
+                <VisualState x:Name="DefaultState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MasterColumn.Width" Value="*" />
+                        <Setter Target="DetailColumn.Width" Value="0" />
+                        <Setter Target="MasterListView.SelectionMode" Value="None" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MasterColumn" Width="320" />
+            <ColumnDefinition x:Name="DetailColumn" Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock x:Name="recentTitle" HorizontalAlignment="Left" Margin="12,8,8,8" Text="Recent" VerticalAlignment="Top" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+
+        <ListView x:Name="MasterListView"
+                  Grid.Row="1"
+                  ItemContainerTransitions="{x:Null}"
+                  IsItemClickEnabled="True"
+                  ItemClick="MasterListView_ItemClick"
+                  ItemsSource="{Binding}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="5">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Person.name}" />
-                                <!-- Student name -->
-                                <TextBlock Text="{Binding Person.className }" />
-                                <!-- Class -->
-                            </StackPanel>
-                            <TextBlock Text="{Binding DateCreated}" />
-                            <!-- Date -->
-                        </StackPanel>
+                <DataTemplate x:DataType="viewmodels:DemoRecordsViewModel">
+                    <Grid Margin="0,11,0,13">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Person.name}" Style="{ThemeResource BaseTextBlockStyle}" />
+                        <TextBlock Text="{Binding Person.number}" Grid.Row="1" MaxLines="1" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <ContentPresenter 
+            x:Name="DetailContentPresenter"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            BorderThickness="1,0,0,0"
+            Padding="24,0"
+            BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
+            Content="{Binding}">
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Style="{ThemeResource TitleTextBlockStyle}"
+                                HorizontalAlignment="Left"
+                                Text="{Binding Person.name}" />
+                            <TextBlock
+                                Margin="5,0"
+                                HorizontalAlignment="Left"
+                                Style="{ThemeResource SubtitleTextBlockStyle}"
+                                Text="{Binding Person.number}" />
+                        </StackPanel>
+                        <TextBlock 
+                            Style="{ThemeResource SubheaderTextBlockStyle}"
+                            HorizontalAlignment="Left"
+                            Text="Procedure" />
+                    </StackPanel>
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter>
     </Grid>
 </UserControl>

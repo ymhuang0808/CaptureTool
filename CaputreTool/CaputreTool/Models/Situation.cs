@@ -9,7 +9,8 @@ namespace CaputreTool.Models
     class Situation
     {
         public DateTime DateCreated { get; set; }
-        enum Awareness { Clear, VoiceResponse, PainResponse, NoResponse };
+        public enum AwarenessEnumType { Clear, VoiceResponse, PainResponse, NoResponse };
+        public int awarenessType { get; set; }
         public int BreathFequency { get; set; }
     }
 }
